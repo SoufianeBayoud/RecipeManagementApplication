@@ -26,10 +26,10 @@ Many-to-One relationship with Recipe entity.**
 ## Technical Requirements
 
 ### Technology Stack
-+ Programming Language: Java 
++ Programming Language: Java 17
 + Build Automation: Maven
-+ Application Framework: Spring Boot
-+ Database: PostgreSQL
++ Application Framework: Spring Boot 3.2.3
++ Database: PostgreSQL 42.6.1
 + Libraries: 
 ```spring-boot-starter-data-jpa
 spring-boot-starter-web
