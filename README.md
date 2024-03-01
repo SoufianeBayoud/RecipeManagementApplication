@@ -9,12 +9,7 @@ The application's database consists of two main entities: Recipe and Ingredient.
 
 ### Recipe Entity Attributes:
 
-id: Long - Primary key auto-generated for each recipe.
-name: String - Name of the recipe.
-description: String - Description of the recipe.
-instruction: String - Cooking instructions for the recipe.
-createdAt: Date - Timestamp indicating when the recipe was created.
-updatedAt: Date - Timestamp indicating when the recipe was last updated.
+![RecipeSchema](https://github.com/SoufianeBayoud/RecipeManagementApplication/assets/101556223/551a744a-a251-48d8-9e48-18b3c4952bff)
 
 **Relationships:
 One-to-Many relationship with Ingredient entity.**
@@ -22,11 +17,7 @@ One-to-Many relationship with Ingredient entity.**
 
 ### Ingredient Entity Attributes:
 
-id: Long - Primary key auto-generated for each ingredient.
-name: String - Name of the ingredient.
-quantity: String - Quantity of the ingredient required for the recipe.
-createdAt: Date - Timestamp indicating when the ingredient was created.
-updatedAt: Date - Timestamp indicating when the ingredient was last updated.
+![IngredientSchema](https://github.com/SoufianeBayoud/RecipeManagementApplication/assets/101556223/77cc4c1f-958a-4754-a86c-4cf53251f473)
 
 **Relationships: 
 Many-to-One relationship with Recipe entity.**
