@@ -61,7 +61,7 @@ The application has a layered architecture, consisting of:
 
 
 ## API Reference
-
+![Swagger CRUD operations](https://github.com/SoufianeBayoud/RecipeManagementApplication/assets/101556223/d7bd8040-728a-496a-ad0d-41628f37ec03)
 
 
 #### Get all items
