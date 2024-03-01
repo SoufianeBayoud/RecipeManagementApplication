@@ -45,7 +45,6 @@ public class RecipeServiceImplementation implements RecipeService{
     @Override
     public Recipe saveRecipe(Recipe recipe) {
         for (Ingredient ingredient : recipe.getIngredients()) {
-            // Définir la recette pour chaque ingrédient
             ingredient.setRecipe(recipe);
         }
 
@@ -54,7 +53,6 @@ public class RecipeServiceImplementation implements RecipeService{
 
     @Override
     public Recipe updateRecipe(Recipe recipe) {
-
         return recipeRepository.save(recipe);
 
     }
@@ -75,21 +73,14 @@ public class RecipeServiceImplementation implements RecipeService{
         Recipe recipe = recipeRepository.findById(recipeId)
                 .orElseThrow(() -> new Exception("Recipe not found with id: " + recipeId));
 
-        // Ensure the ingredient object is properly initialized
         if (ingredient == null) {
             throw new Exception("Ingredient object is null.");
         }  else if (recipe.getIngredients() == null) {
             recipe.setIngredients(new ArrayList<>());
         }
 
-        // Set the recipe for the ingredient
         ingredient.setRecipe(recipe);
-
-        // Add the ingredient to the recipe's list of ingredients
         recipe.getIngredients().add(ingredient);
-
-
-        // Save the updated recipe
         Recipe savedRecipe = recipeRepository.save(recipe);
 
         return savedRecipe;

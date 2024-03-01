@@ -39,7 +39,6 @@ public class RecipeController {
 
     @PostMapping("/recipes")
     public ResponseEntity<Recipe> saveRecipe(@RequestBody Recipe recipe){
-        //@RequestBody est obligatoire pour pouvoir changer les variables
         return new ResponseEntity<Recipe>(recipeService.saveRecipe(recipe), HttpStatus.CREATED);
     }
 
@@ -47,8 +46,6 @@ public class RecipeController {
     @PutMapping("/recipes/{id}")
     public ResponseEntity<Recipe> updateRecipe(@PathVariable(value = "id") Long id, @RequestBody Recipe recipe){
         recipe.setId(id);
-        //J'appelle le id pour pouvoir return le update
-
 
         return new ResponseEntity<Recipe>(recipeService.updateRecipe(recipe), HttpStatus.OK);
     }
@@ -67,11 +64,8 @@ public class RecipeController {
 
     @PutMapping("/recipes/ingredients/add/{id}")
     public ResponseEntity<Recipe> addIngredientToRecipe(@PathVariable(value = "id") Long id, @RequestBody Ingredient ingredient) throws Exception {
-        //Recipe updatedRecipe = recipeService.addIngredientToRecipe(recipeId, ingredient);
-
 
         return new ResponseEntity<Recipe>(recipeService.addIngredientToRecipe(id, ingredient), HttpStatus.OK);
-        //return ResponseEntity.ok(updatedRecipe);
     }
 
     @DeleteMapping("/recipes/ingredients/{id}/{ingredientId}")
@@ -79,12 +73,6 @@ public class RecipeController {
         Recipe updatedRecipe = recipeService.removeIngredientFromRecipe(id, ingredientId);
         return ResponseEntity.ok(updatedRecipe);
     }
-
-
-
-
-
-
 
 
 }

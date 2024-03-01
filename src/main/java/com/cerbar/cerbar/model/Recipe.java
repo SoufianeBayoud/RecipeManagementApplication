@@ -41,7 +41,6 @@ public class Recipe {
     private Date updatedAt;
 
     @OneToMany(mappedBy = "recipe", cascade = CascadeType.ALL)
-    //@JsonIdentityReference(alwaysAsId = true)
     @JsonManagedReference
     private List<Ingredient> ingredients;
 

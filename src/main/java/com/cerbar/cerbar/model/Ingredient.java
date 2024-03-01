@@ -20,7 +20,6 @@ import java.util.Date;
 @NoArgsConstructor
 @AllArgsConstructor
 @Table(name = "Ingredient")
-//@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "name")
 public class Ingredient {
 
     @Id
@@ -40,7 +39,7 @@ public class Ingredient {
     @UpdateTimestamp
     private Date updatedAt;
 
-    @ManyToOne//(fetch = FetchType.LAZY)
+    @ManyToOne
     @JoinColumn(name = "recipe_id")
     @JsonBackReference
     public Recipe recipe;

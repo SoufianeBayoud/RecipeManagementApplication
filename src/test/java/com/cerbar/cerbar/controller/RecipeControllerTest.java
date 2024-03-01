@@ -83,9 +83,6 @@ public class RecipeControllerTest {
                 .andExpect(jsonPath("$.ingredients[1].name", is(recipe.getIngredients().get(1).getName())))
                 .andExpect(jsonPath("$.ingredients[1].quantity", is(recipe.getIngredients().get(1).getQuantity())));
 
-
-                //On appelle pas le TimeStamps parce que ils sont = null
-
     }
 
 
@@ -128,8 +125,6 @@ public class RecipeControllerTest {
 
         this.mockMvc.perform(delete("/recipes").param("id", "1"))
                 .andExpect(status().isOk());
-        //Si j'aurais fait passer HttpStatus.NO_CONTENT a ce moment la j'aurais mis .isNoContent()
-
     }
 
     @Test
@@ -138,9 +133,6 @@ public class RecipeControllerTest {
         doNothing().when(recipeService).deleteAllRecipe();
         this.mockMvc.perform(delete("/deleteAll"))
                 .andExpect(status().isOk());
-        //Si j'aurais fait passer HttpStatus.NO_CONTENT a ce moment la j'aurais mis .isNoContent()
-
-
     }
 
 

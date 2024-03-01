@@ -26,10 +26,10 @@ import static org.mockito.Mockito.times;
 
 @ExtendWith(MockitoExtension.class)
 public class RecipeServiceTest {
-    @InjectMocks //Creates an object/bean that + the Mock is injected in it
+    @InjectMocks
     private RecipeServiceImplementation recipeService;
-    //J'ai pas mis RecipeService car c'est une interface !
-    @Mock //Ca va mock ce repo en gros tu 'créé' un faux repo
+
+    @Mock
     private RecipeRepository recipeRepository;
 
     private Recipe recipe;
@@ -64,13 +64,9 @@ public class RecipeServiceTest {
     @Test
     void saveRecipes(){
         when(recipeRepository.save(any(Recipe.class))).thenReturn(recipe);
-        //Quand le repo appelle le method save et qu'il appelle le Movie class
-        //Ben tu return le avatarMovie
-        //On fait sa pour faire un fake implementation
 
         Recipe savedRecipe = recipeService.saveRecipe(recipe);
         assertNotNull(savedRecipe);
-        // + Check a property
         assertThat(savedRecipe.getName()).isEqualTo("Spaghetti");
     }
 
@@ -112,20 +108,8 @@ public class RecipeServiceTest {
 
     @Test
     void deleteRecipe(){
-//        when(recipeRepository.findById(anyLong())).thenReturn(Optional.of(recipe));
-//        doNothing().when(recipeRepository).delete(any(Recipe.class));
-//        //On appelle le doNothing lorsque tu appelle le repo pour supprimer la class
-//        //Pour pas vraiment le supprimer
-//        recipeService.deleteRecipeById(1L); //It will return anything
-//        //We verify if the method is called or not
-//        verify(recipeRepository, times(1)).delete(recipe);
-//        //verify if called exactly once with the object as an argument
-//        // during the execution of the test.
-
         doNothing().when(recipeRepository).deleteById(anyLong());
-        // Act
         recipeService.deleteRecipeById(1L);
-        // Assert
         verify(recipeRepository, times(1)).deleteById(1L);
     }
 
@@ -137,7 +121,6 @@ public class RecipeServiceTest {
         addRecipe.setInstruction("Use the BBQ");
         addRecipe.setDescription("This a dish for the summer");
 
-        // Stub the behavior of the repository
         when(recipeRepository.findById(1L)).thenReturn(Optional.of(addRecipe));
 
         Ingredient ingredient3 = new Ingredient();
@@ -146,10 +129,8 @@ public class RecipeServiceTest {
         ingredient3.setQuantity("3 pinch");
         ingredient3.setRecipe(addRecipe);
 
-        // Call the method under test
         recipeService.addIngredientToRecipe(1L, ingredient3);
 
-        // Assert on the state of the recipe object after the method call
         assertNotNull(addRecipe.getIngredients());
         assertEquals(1, addRecipe.getIngredients().size());
         assertEquals("Salt", addRecipe.getIngredients().get(0).getName());
@@ -158,14 +139,11 @@ public class RecipeServiceTest {
 
     @Test
     void deleteIngredientFromRecipe(){
-        // Mock the repository's behavior
         when(recipeRepository.findById(anyLong())).thenReturn(Optional.of(recipe));
         when(recipeRepository.save(recipe)).thenReturn(recipe);
 
-        // Call the method under test
         Recipe updatedRecipe = recipeService.removeIngredientFromRecipe(1L, 1L);
 
-        // Verify that the ingredient was removed
         assertEquals(1, updatedRecipe.getIngredients().size());
         assertEquals(2L, updatedRecipe.getIngredients().get(0).getId()); // Check if correct ingredient remains
 
